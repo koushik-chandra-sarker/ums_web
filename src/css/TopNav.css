@@ -1,0 +1,73 @@
+.top_navbar{
+    width: calc(100% - 100px);
+    height: 80px;
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    border-bottom-left-radius: 30px;
+    background: #fff;
+    justify-content: space-between;
+
+
+}
+
+.top_navbar .user_name{
+    display: flex;
+    align-items: center;
+    margin-left: 40px;
+    color: #867aee;
+    font-size: 25px;
+    margin-right: 8px;
+}
+
+.top_navbar .user_name span{
+    color: #3421c0;
+    font-size: 30px;
+    margin-right: 8px;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+.top_navbar .top_navbar_right{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.top_navbar .top_navbar_right .profile_pic{
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    margin-right: 40px;
+    cursor: pointer;
+
+}
+
+
+.top_navbar .top_navbar_right .profile_pic img{
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+}
+.top_navbar .top_navbar_right .Notify_icons{
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    position: relative;
+}
+.top_navbar .top_navbar_right  img {
+    height: 40px;
+    width: 40px;
+    margin-right: 15px;
+}
+.top_navbar .top_navbar_right .Notify_icons .massage-count img{
+    position: absolute;
+    left: 30px;
+    top: 20px;
+    height: 20px;
+}
+.top_navbar .top_navbar_right .Notify_icons .notify_count img{
+    position: absolute;
+    left: 94px;
+    top: 20px;
+    height: 20px;
+}

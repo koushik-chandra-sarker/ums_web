@@ -1,0 +1,231 @@
+.login-main{
+    height: 100vh;
+    width: 100vw;
+    background: aqua;
+}
+.login-main .login-left{
+    width: 100%;
+    height: 100%;
+    background: #0A67A4;
+    position: relative;
+}
+.login-main .login-left .login-left-inner{
+    width: 95%;
+    height: 95%;
+    box-shadow: -13px -1px 20px #045283;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-top-left-radius: 8em;
+}
+.login-main .login-left .login-left-inner .left-logo{
+    height: 200px;
+    width: 200px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 150px;
+    border-radius: 100px;
+    box-shadow: 0 0 20px #045283;
+}
+
+.login-main .login-left .login-left-inner .left-logo img{
+    height: 180px;
+    width: 180px;
+    margin-top: 10px;
+
+}
+
+.login-main .login-left .login-left-inner .left-title{
+    margin-top: 60px;
+}
+.login-main .login-left .login-left-inner .left-title h1{
+    font-size: 35px;
+    color: #FFF200;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    word-spacing: 5px;
+}
+
+
+
+
+
+
+
+
+
+.login-main .login-right{
+    width: 100%;
+    height: 100%;
+    background: #f1f0f0;
+    position: relative;
+}
+.login-main .login-right .login-right-inner{
+    width: 95%;
+    height: 95%;
+    box-shadow: 13px -1px 20px #bab2b2;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top-right-radius: 8em;
+}
+
+.login-main .login-right .login-right-inner .right-form{
+    padding: 80px 100px;
+}
+.login-main .login-right .login-right-inner .right-form h1{
+    font-size: 50px;
+    color: #999898;
+    letter-spacing: 5px;
+}
+.login-main .login-right .login-right-inner .right-form p{
+    font-size: 20px;
+    color: #999898;
+    letter-spacing: 3px;
+    word-spacing: 8px;
+    margin-bottom: 60px;
+    line-height: 40px;
+}
+
+.login-main .login-right .login-right-inner .right-form input{
+    width: 100%;
+    padding: 20px 50px;
+    margin-bottom: 40px;
+    border-radius: 45px;
+    outline: none;
+    border: none;
+    background: none;
+    color: #555;
+    font-size: 16px;
+    box-shadow: inset 5px 5px 10px #b5b5b5, inset -7px -7px 10px #ffffff;
+}
+.login-main .login-right .login-right-inner .right-form .input{
+    position: relative;
+}
+.login-main .login-right .login-right-inner .right-form .form-icon{
+    color: #999898;
+    position: absolute;
+    top: 20px;
+    text-align: left !important;
+    left: 20px;
+    font-size: 20px;
+}
+
+.login-main .login-right .login-right-inner .right-form button{
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    box-shadow: 3px 3px 8px #b5b5b5, -3px -3px 8px #ffffff;
+    border-radius: 45px;
+    color: #999898;
+
+}
+
+.login-main .login-right .login-right-inner .right-form button:hover{
+    background: #0A67A4;
+    color: #e2e2e2;
+}
+.login-main .login-right .login-right-inner .right-form .forgot-pass{
+    margin-top: 40px;
+}
+.login-main .login-right .login-right-inner .right-form a{
+    font-size: 16px;
+    letter-spacing: 3px;
+    word-spacing: 5px;
+
+}
+
+
+
+@media (max-width: 960px) {
+    .login-main .login-left{
+        display: none;
+    }
+    .login-main .login-right .login-right-inner{
+        width: 60%;
+        height: 750%;
+        border-radius: 2.5em;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+    }
+    .login-main .login-right .login-right-inner .right-form{
+        padding: 20px 40px;
+    }
+    .login-main .login-right .login-right-inner .right-logo{
+        display: block !important;
+        width: 120px;
+        height: 120px;
+        text-align: center;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 40px;
+        border-radius: 100px;
+        box-shadow: 0 0 8px #b3b3b3;
+    }
+    .login-main .login-right .login-right-inner .right-logo img{
+        width: 100px;
+        height: 100px;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 600px){
+    .login-main .login-right .login-right-inner{
+        width: 90%;
+        height: 90%;
+
+    }
+    .login-main .login-right .login-right-inner .right-form{
+        padding: 10px 20px;
+    }
+    .login-main .login-right .login-right-inner .right-logo{
+        width: 100px;
+        height: 100px;
+
+    }
+    .login-main .login-right .login-right-inner .right-logo img{
+        width: 90px;
+        height: 90px;
+        margin-top: 5px;
+    }
+
+    .login-main .login-right .login-right-inner .right-form h1{
+        font-size: 35px;
+    }
+    .login-main .login-right .login-right-inner .right-form p{
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .login-main .login-right .login-right-inner .right-form input{
+        padding: 15px 50px;
+        margin-bottom: 20px;
+    }
+
+    .login-main .login-right .login-right-inner .right-logo{
+        width: 80px;
+        height: 80px;
+    }
+    .login-main .login-right .login-right-inner .right-logo img{
+        width: 70px;
+        height: 70px;
+        margin-top: 5px;
+    }
+    .login-main .login-right .login-right-inner .right-form h1{
+        font-size: 30px;
+    }
+    .login-main .login-right .login-right-inner .right-form button{
+        width: 100%;
+        padding: 10px;
+        font-size: 20px;
+        margin-top: 5px;
+
+    }
+}
