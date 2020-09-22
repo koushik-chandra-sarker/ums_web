@@ -1,16 +1,16 @@
-import {AUTH_SUCCESS} from "./AuthApiTypes";
+import {SUCCESS} from "./LoginAsTypes";
 
 
 const initialState ={
-    data:{isActive: null,
-        Role: ""
+    data:{
+        open:false
     }
 }
 
-const AuthApiReducer = (state = initialState, action) => {
+const LoginAsReducer = (state = initialState, action) => {
     switch (action.type) {
 
-        case AUTH_SUCCESS:
+        case SUCCESS:
             return {
                 ...state,
                 data: action.payload,
@@ -20,4 +20,4 @@ const AuthApiReducer = (state = initialState, action) => {
     }
 }
 
-export default AuthApiReducer;
+export default LoginAsReducer;

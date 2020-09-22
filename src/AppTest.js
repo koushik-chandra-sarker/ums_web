@@ -7,6 +7,10 @@ import {useDispatch, useSelector} from "react-redux";
 
 import Logout from "./components/Common/Logout";
 import {setAuth} from "./components/Services/AuthApi/AuthApiAction";
+import {setUser} from "./components/Services/Login/LoginAction";
+import SMain from "./components/Student/SMain";
+import AdminMain from "./components/Admin/SMain";
+
 
 function App() {
 
@@ -16,6 +20,7 @@ function App() {
         const user_type = localStorage.getItem("user_type");
         if (user_type) {
             dispatch(setAuth(true, user_type))
+            dispatch(setUser(JSON.parse(localStorage.getItem("user"))))
         }
     }
     useEffect(() => {
@@ -30,8 +35,6 @@ function App() {
                 {/*<Route exact path={"/"} component={WelcomePage}/>*/}
                 <Route exact path={"/logout"} component={Logout}/>
             </Switch>
-
-
         </>
 
     );
@@ -58,7 +61,7 @@ const CheckRoute = (Auth) => {
         return (
             <>
                 <ProtectedRouteS path="/student" auth={Auth.isActive} role={Auth.Role}
-                                 component={TMain}/>
+                                 component={SMain}/>
                 <Redirect to={"/student/dashboard"}/>
             </>
         )
@@ -76,7 +79,7 @@ const Routes = () => {
                             component={Login}/>
 
             <ProtectedRouteS path="/student" auth={Auth.isActive} role={Auth.Role}
-                             component={TMain}/>
+                             component={SMain}/>
             <ProtectedRouteT path="/teacher" auth={Auth.isActive} role={Auth.Role}
                              component={TMain}/>
             <Redirect to={"/teacher/dashboard"}/>
@@ -149,86 +152,5 @@ const ProtectedLogin = ({auth, role, component: Component, ...rest}) => {
     )
 }
 
-/*
-const Routes = () => {
-    const Auth = useSelector(state => state.auth.data)
-    console.log(Auth)
-    return (
-        <Switch>
-            <ProtectedLogin exact path="/login" auth={Auth.isActive} role={Auth.Role}
-                            component={Login}/>
-            {
-                Auth.isActive && Auth.role === "USER" ?
-                    <>
-                        <ProtectedRouteS path="/student" auth={Auth.isActive} role={Auth.Role}
-                                         component={TMain}/>
-                        <Redirect to={"/student/dashboard"}/>
-                    </>
-                    :Auth.isActive && Auth.role === "ADMIN" ?
-                    <>
-                        <ProtectedRouteT path="/teacher" auth={Auth.isActive} role={Auth.Role}
-                                         component={TMain}/>
-                        <Redirect to={"/teacher/dashboard"}/>
-                    </>
-                    :
-                    <Redirect to={"/login"}/>
-
-
-            }
-            {/!*<ProtectedRouteT path="/teacher" auth={Auth.isActive} role={Auth.Role}
-                             component={TMain}/>
-            <Redirect to={"/teacher/dashboard"}/>
-            <ProtectedRouteS path="/student" auth={Auth.isActive} role={Auth.Role}
-                             component={TMain}/>
-            <Redirect to={"/student/dashboard"}/>*!/}
-        </Switch>
-    )
-}
-
-const ProtectedRouteT = ({auth, role, component: Component, ...rest}) => {
-    return (
-        <Route
-            {...rest}
-            render={() => auth && role === `ADMIN` ? (
-                <Component/>
-            ) /!*: auth && role === `USER` ?
-                <Redirect to={"/student"}/>*!/
-                :
-                <Redirect to={"/login"}/>
-            }
-        />
-    )
-}
-const ProtectedRouteS = ({auth, role, component: Component, ...rest}) => {
-    return (
-        <Route
-            {...rest}
-            render={() => auth && role === `USER` ? (
-                <Component/>
-            ) /!*: auth && role === `ADMIN` ?
-                <Redirect to={"/teacher"}/>*!/
-                :
-                <Redirect to={"/login"}/>
-            }
-        />
-    )
-}
-const ProtectedLogin = ({auth, role, component: Component, ...rest}) => {
-    return (
-        <Route
-            {...rest}
-            render={() => !auth && role === "" ? (
-                <Component/>
-            ) : auth && role === "ADMIN" ?
-                <Redirect to={"/teacher"}/>
-                : auth && role === "USER" ?
-                    <Redirect to={"/student"}/>
-                    : <Redirect to={"/login"}/>
-
-
-            }
-        />
-    )
-}*/
 
 export default App;

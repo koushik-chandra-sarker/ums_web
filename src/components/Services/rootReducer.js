@@ -7,6 +7,7 @@ import StudentListReducer from "./Student/StudentListReducer";
 import StdModelControlReducer from "./StdModelControl/StdModelControlReducer";
 import LecturerCoursesReducer from "./Lecturer/LecturerCoursesReducer";
 import StudentCourseBYCourseSsnReducer from "./Student/StudentCourseBYCourseSsnReducer"
+import LoginAsReducer from "./LoginAs/LoginAsReducer";
 
 
 
@@ -18,7 +19,8 @@ const rootReducer = combineReducers ({
     auth: AuthApiReducer,
     stdModalControl: StdModelControlReducer,
     lecturer_courseList: LecturerCoursesReducer,
-    studentCourseListByCSsn:StudentCourseBYCourseSsnReducer
+    studentCourseListByCSsn:StudentCourseBYCourseSsnReducer,
+    LoginAsOpen:LoginAsReducer
 })
 
 export default rootReducer;

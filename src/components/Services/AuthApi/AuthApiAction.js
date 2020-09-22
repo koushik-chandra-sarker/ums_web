@@ -3,7 +3,7 @@ export const setAuth = (action, role)=> dispatch =>{
 
     const auth={
         isActive: action,
-        Role: role
+        Role: role,
     }
 
         dispatch({
