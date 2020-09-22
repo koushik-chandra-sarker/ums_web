@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import Grid from "@material-ui/core/Grid";
 import {Typography} from "@material-ui/core";
 import notification from "../Images/notification.svg";
@@ -8,14 +8,11 @@ import "../css/TopNav.css"
 import active from "../Images/active.svg"
 import ProfileDialog from "./Common/ProfileDialog";
 import ProfileDialogOpen from "./Context/ProfileDialogOpen";
-import {useSelector} from "react-redux";
 
 
 const TopNav = (props) => {
     const OpenProfileDialog = useContext(ProfileDialogOpen)
-    console.log(props.person)
     function ProfilePicClickHandler() {
-        console.log("success")
         OpenProfileDialog.setOpenProfileDialog(true)
     }
 

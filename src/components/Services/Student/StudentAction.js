@@ -49,7 +49,7 @@ export const fetchStudent = (id,username,password)=>{
         dispatch({
             type: FETCH_STUDENT_REQUEST
         });
-        axios.get(`${base_url}/students/${id}`,
+        axios.get(`${base_url}/students/find/${id}`,
             {
                 auth: {
                     username: username,

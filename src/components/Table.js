@@ -108,11 +108,11 @@ const Table = (props) => {
                                 onMouseLeave={handlePopoverClose}
                             >
                                 {ShowPopover()}
-                                <td >{value.id}</td>
-                                <td >{value.firstName} {value.middleName} {value.lastName}</td>
-                                <td >{value.email}</td>
-                                <td >{value.programme.code? value.programme.code : value.programme}</td>
-                                <td >
+                                <td data-label="Id">{value.id}</td>
+                                <td data-label="Name">{value.firstName} {value.middleName} {value.lastName}</td>
+                                <td data-label="Email">{value.email}</td>
+                                <td data-label="Programme">{value.programme.code? value.programme.code : value.programme}</td>
+                                <td data-label="Phone">
                                     {
                                         value.phone.map((v)=>{
                                             return(

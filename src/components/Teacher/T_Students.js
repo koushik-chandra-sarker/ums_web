@@ -6,7 +6,7 @@ import InfoCard from "../infoCard";
 import students1 from "../../Images/card_student_1.svg"
 import students2 from "../../Images/card_student_2.svg"
 import Table from "../Table";
-import StdModal from "./StdModal";
+import StdModal from "../Common/StdModal";
 
 
 const useStyles = makeStyles({

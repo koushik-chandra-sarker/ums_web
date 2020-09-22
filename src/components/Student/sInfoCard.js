@@ -5,18 +5,20 @@ import {makeStyles} from "@material-ui/core/styles";
 const useStyles = makeStyles({
 
     card: {
-        background: "#00C0EF",
+        background: "#f5f5f5",
+        boxShadow: "5px 5px 8px #e9e9e5, -5px -5px 8px #ffffff",
+        borderRadius: "8px",
         position: "relative",
         "& h5": {
-            color: "#E8EDF5",
+            color: "#666666",
             fontWeight: "bold"
         },
         "& p": {
-            color: "#E8EDF5",
+            color: "#666666",
             fontSize: "12px"
         },
         "& a": {
-            color: "#E8EDF5",
+            color: "#666666",
             fontSize: "14px"
         },
 
@@ -33,7 +35,7 @@ const useStyles = makeStyles({
 
     },
     cardAction: {
-        background: "#00ADD8",
+        background: "#c8c7c7",
         marginTop: "10px",
         height: "25px",
         display: "flex",
@@ -42,7 +44,7 @@ const useStyles = makeStyles({
 });
 
 
-const InfoCard = (props) => {
+const SInfoCard = (props) => {
     const classes = useStyles();
     return (
         <div>
@@ -59,7 +61,7 @@ const InfoCard = (props) => {
                     <Typography component={"img"} className={classes.card_icon} src={props.icon} alt={""}/>
                 </CardContent>
                 <CardActions className={classes.cardAction} style={{background:`${props.bottomBgColor}`}}>
-                    <Typography component={"a"} href="#">More info &rarr;</Typography>
+                    <Typography component={"a"} href="#">{props.actionTitle} &rarr;</Typography>
                 </CardActions>
 
             </Card>
@@ -67,4 +69,4 @@ const InfoCard = (props) => {
     );
 };
 
-export default InfoCard;
+export default SInfoCard;

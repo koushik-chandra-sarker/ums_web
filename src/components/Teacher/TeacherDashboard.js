@@ -40,23 +40,6 @@ const useStyles = makeStyles({
 })
 
 
-const TMenu = [
-    {
-        id: 1,
-        link: "/teacher/dashboard",
-        logo: dashboard,
-    },
-    {
-        id: 2,
-        link: "/teacher/students",
-        logo: Students,
-    },
-    {
-        id: 3,
-        link: "/teacher/classes",
-    },
-]
-
 
 const TeacherDashboard = () => {
     const classes = useStyles();

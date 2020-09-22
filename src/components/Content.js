@@ -8,6 +8,7 @@ import {useDispatch} from "react-redux";
 import {fetchALLStudent} from "./Services/Student/StudentAction";
 import {fetchLecturer_coursesList} from "./Services/Lecturer/LecturerAction";
 import Classes from "./Teacher/Classes"
+import SDashboard from "./Student/SDashboard";
 
 const Content = () => {
     const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const Content = () => {
                     <Container maxWidth={"xl"}>
                         <Switch>
                         <Route path="/teacher/dashboard" component={TeacherDashboard}/>
+                        <Route path="/student/dashboard" component={SDashboard}/>
                         <Route path="/teacher/students" component={TStudents}/>
                         <Route path="/teacher/classes" component={Classes}/>
                         </Switch>

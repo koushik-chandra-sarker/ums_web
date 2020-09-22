@@ -14,7 +14,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchALLStudentCourseByCSsn} from "../Services/Student/StudentAction";
 import Table1 from "./Table1";
 import _ from "lodash"
-import StdModal from "./StdModal";
+import StdModal from "../Common/StdModal";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 

@@ -1,16 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 import "../../css/main.css"
-
-import SideNav from "../SideNav";
-import Content from "../Content";
-import TopNav from "../TopNav";
+import SideNav from "../SideNav"
+import Content from "../Content"
+import TopNav from "../TopNav"
 import dashboard from "../../Images/dashboard.svg"
-import Students from "../../Images/student.svg"
-import classes from "../../Images/classes.svg"
 import assignment from "../../Images/assignment.svg"
-import attendance from "../../Images/attendance.svg"
-import ProfileDialogOpen from "../Context/ProfileDialogOpen";
-import {useSelector} from "react-redux";
+import ProfileDialogOpen from "../Context/ProfileDialogOpen"
+import {useSelector} from "react-redux"
+import Pre_reg1 from "../../Images/Pre_reg1.svg"
+import grade from "../../Images/grade.svg"
 
 const SMenu = [
     {
@@ -21,12 +19,12 @@ const SMenu = [
     {
         title: "Preregistration",
         link: "/student/preregistration",
-        logo: Students,
+        logo: Pre_reg1,
     },
     {
         title: "Grades",
         link: "/students/grades",
-        logo: classes,
+        logo: grade,
     },
     {
         title: "Curriculum Details",
@@ -36,7 +34,7 @@ const SMenu = [
     {
         title: "Assignment",
         link: "/student/assignment",
-        logo: attendance,
+        logo: assignment,
     },
 
 ]

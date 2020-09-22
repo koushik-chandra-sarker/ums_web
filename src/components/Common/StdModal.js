@@ -1,4 +1,4 @@
-import React, {forwardRef, useImperativeHandle, useState} from 'react';
+import React, {forwardRef, useEffect, useImperativeHandle, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import IconButton from '@material-ui/core/IconButton';
@@ -90,6 +90,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 
 const StdModal = /*forwardRef((props, ref)*/ () => {
+    useEffect(() => {
+        userType==="STUDENT"? setViewProfile(true):setViewProfile(false)
+    },[])
+    const userType = localStorage.getItem("user_type")
     const crlModal = useSelector(store => store.stdModalControl.data)
     const student = useSelector(store => store.student.data);
     const classes = useStyles();
@@ -168,14 +172,25 @@ const StdModal = /*forwardRef((props, ref)*/ () => {
                                         </Typography>
                                     </Typography>
                                     <br/>
-                                    <Button variant="outlined" color="secondary" onClick={()=>{viewProfile?setViewProfile(false):setViewProfile(true)}}>
-                                        {viewProfile?  <>Show Course info</> : <>View Profile</>}
-                                    </Button>
+                                    {
+                                        userType !== "STUDENT"?
+                                            <>
+                                                <Button variant="outlined" color="secondary" onClick={()=>{viewProfile?setViewProfile(false):setViewProfile(true)}}>
+                                                    {viewProfile?  <>Show Course info</> : <>View Profile</>}
+                                                </Button>
+                                            </>
+                                            :<></>
+                                    }
+
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} md={9} style={{paddingRight:"30px"}}>
                                 <Typography  className={classes.courses}>
-                                    {viewProfile?  <StdProfile/> : <TransferList/>}
+                                    {
+                                        userType !== "STUDENT" ?
+                                            viewProfile ? <StdProfile/> : <TransferList/>
+                                            : <StdProfile/>
+                                    }
                                 </Typography>
 
                             </Grid>

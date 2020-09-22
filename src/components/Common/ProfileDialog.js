@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -10,10 +10,12 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import ProfileDialogOpen from "../Context/ProfileDialogOpen";
 import {Link} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Grid, Avatar} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 import defaultProfilePic from "../../Images/DefaultprofilePic.png"
+import {setModalControl} from "../Services/StdModelControl/StdModelControlAction";
+import {fetchStudent} from "../Services/Student/StudentAction";
 
 const styles = (theme) => ({
     root: {
@@ -78,11 +80,21 @@ export default function ProfileDialog(props) {
     const open = useContext(ProfileDialogOpen);
     const user = useSelector(store => store.user.data)
     const classes = useStyles();
-
+    const dispatch = useDispatch();
     const handleClose = () => {
         open.setOpenProfileDialog(false);
 
     };
+    const student = useSelector(store => store.student.data);
+    const rowEvent = (id) => {
+        dispatch(setModalControl(true,id))
+        const credential = JSON.parse(localStorage.getItem("credential"))
+        dispatch(fetchStudent(id,credential.username,credential.password))
+        open.setOpenProfileDialog(false);
+        console.log(props.person)
+
+
+    }
 
 
     return (
@@ -113,9 +125,9 @@ export default function ProfileDialog(props) {
                             <Avatar alt="Remy Sharp" src={defaultProfilePic} className={classes.profilePic}/>
                         </Grid>
                         <Grid item>
-                            <Typography component={"h4"} style={{padding:"20px 0"}}>
+                            <Typography component={"h4"} style={{padding: "20px 0"}}>
                                 Name: {
-                                props.person.middleName !== null?
+                                props.person.middleName !== null ?
                                     `${props.person.firstName} ${props.person.middleName} ${props.person.lastName}`
                                     :
                                     `${props.person.firstName} ${props.person.lastName}`
@@ -137,6 +149,11 @@ export default function ProfileDialog(props) {
                             <Typography component={"h4"}>
                                 Title: {props.person.title}
                             </Typography> <br/>
+                        </Grid>
+                        <Grid item>
+                            <Button variant="outlined" color="secondary" onClick={()=>{rowEvent(props.person.id)}}>
+                                View Profile
+                            </Button>
                         </Grid>
                     </Grid>
                 </DialogContent>
