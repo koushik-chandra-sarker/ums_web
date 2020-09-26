@@ -4,12 +4,13 @@ import './App.css';
 import Login from "./components/Common/Login";
 import TMain from "./components/Teacher/TMain";
 import {useDispatch, useSelector} from "react-redux";
-
+import 'react-toastify/dist/ReactToastify.css';
 import Logout from "./components/Common/Logout";
 import {setAuth} from "./components/Services/AuthApi/AuthApiAction";
 import {setUser} from "./components/Services/Login/LoginAction";
 import SMain from "./components/Student/SMain";
-import AdminMain from "./components/Admin/SMain";
+import AdminMain from "./components/Admin/AdminMain";
+import {ToastContainer} from "react-toastify";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
 
     return (
         <>
+            <ToastContainer/>
             <Routes/>
             <Switch>
                 {/*<Route exact path={"/"} component={WelcomePage}/>*/}
@@ -49,6 +51,15 @@ const CheckRoute = (Auth) => {
                             component={Login}/>
         )
     }
+    if (Auth.isActive && Auth.Role === "ADMIN") {
+        return (
+            <>
+                <ProtectedRouteS path="/admin" auth={Auth.isActive} role={Auth.Role}
+                                 component={AdminMain}/>
+                <Redirect to={"/admin/dashboard"}/>
+            </>
+        )
+    }
     if (Auth.isActive && Auth.Role === "LECTURER") {
         return (
             <>
@@ -67,15 +78,7 @@ const CheckRoute = (Auth) => {
             </>
         )
     }
-    if (Auth.isActive && Auth.Role === "ADMIN") {
-        return (
-            <>
-                <ProtectedRouteS path="/admin" auth={Auth.isActive} role={Auth.Role}
-                                 component={AdminMain}/>
-                <Redirect to={"/admin/dashboard"}/>
-            </>
-        )
-    }
+
 
 }
 const Routes = () => {
@@ -84,10 +87,11 @@ const Routes = () => {
         <Switch>
             <ProtectedLogin exact path="/login" auth={Auth.isActive} role={Auth.Role}
                             component={Login}/>
-            <ProtectedRouteA path="/admin" auth={Auth.isActive} role={Auth.Role}
-                             component={AdminMain}/>
+
             <ProtectedRouteS path="/student" auth={Auth.isActive} role={Auth.Role}
                              component={SMain}/>
+            <ProtectedRouteA path="/admin" auth={Auth.isActive} role={Auth.Role}
+                             component={AdminMain}/>
             <ProtectedRouteT path="/teacher" auth={Auth.isActive} role={Auth.Role}
                              component={TMain}/>
             <Redirect to={"/teacher/dashboard"}/>

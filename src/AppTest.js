@@ -9,7 +9,7 @@ import Logout from "./components/Common/Logout";
 import {setAuth} from "./components/Services/AuthApi/AuthApiAction";
 import {setUser} from "./components/Services/Login/LoginAction";
 import SMain from "./components/Student/SMain";
-import AdminMain from "./components/Admin/SMain";
+import AdminMain from "./components/Admin/AdminMain";
 
 
 function App() {

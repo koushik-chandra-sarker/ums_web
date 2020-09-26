@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import "../../css/main.css"
 import SideNav from "../SideNav"
-import Content from "../Content"
+import Content from "../Common/Content"
 import TopNav from "../TopNav"
 import dashboard from "../../Images/dashboard.svg"
 import assignment from "../../Images/assignment.svg"

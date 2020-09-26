@@ -40,6 +40,7 @@ function SimpleDialog(props) {
         onClose(value);
         console.log(value)
         dispatch(setAuth(user.active,value))
+        localStorage.setItem('user_type', value);
     };
 
     return (

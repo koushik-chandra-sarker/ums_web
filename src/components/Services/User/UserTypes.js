@@ -1,0 +1,3 @@
+ export  const USER_LIST_LOADING= 'USER_LIST_LOADING';
+ export  const USER_LIST_SUCCESS= 'USER_LIST_SUCCESS';
+ export  const USER_LIST_ERROR= 'USER_LIST_ERROR';

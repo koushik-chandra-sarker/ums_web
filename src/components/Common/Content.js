@@ -1,14 +1,20 @@
 import React, {useEffect} from 'react';
 import {Container, Box} from "@material-ui/core";
-import "../css/content.css"
-import TeacherDashboard from "./Teacher/TeacherDashboard";
+import "../../css/content.css"
+import TeacherDashboard from "../Teacher/TeacherDashboard";
 import {Switch, Route,} from "react-router-dom"
-import TStudents from "./Teacher/T_Students";
+import TStudents from "../Teacher/T_Students";
 import {useDispatch} from "react-redux";
-import {fetchALLStudent} from "./Services/Student/StudentAction";
-import {fetchLecturer_coursesList} from "./Services/Lecturer/LecturerAction";
-import Classes from "./Teacher/Classes"
-import SDashboard from "./Student/SDashboard";
+import {fetchALLStudent} from "../Services/Student/StudentAction";
+import {fetchLecturer_coursesList} from "../Services/Lecturer/LecturerAction";
+import Classes from "../Teacher/Classes"
+import SDashboard from "../Student/SDashboard";
+import ADashboard from "../Admin/ADashboard";
+import ACampus from "../Admin/ACampus";
+import ASchool from "../Admin/ASchool";
+import AProgramme from "../Admin/AProgramme";
+import ACourse from "../Admin/ACourse";
+import ALecturer from "../Admin/ALecturer";
 
 const Content = () => {
     const dispatch = useDispatch();
@@ -26,8 +32,14 @@ const Content = () => {
                         <Switch>
                         <Route path="/teacher/dashboard" component={TeacherDashboard}/>
                         <Route path="/student/dashboard" component={SDashboard}/>
+                        <Route path="/admin/dashboard" component={ADashboard}/>
                         <Route path="/teacher/students" component={TStudents}/>
                         <Route path="/teacher/classes" component={Classes}/>
+                        <Route path="/admin/campus" component={ACampus}/>
+                        <Route path="/admin/school" component={ASchool}/>
+                        <Route path="/admin/programme" component={AProgramme}/>
+                        <Route path="/admin/course" component={ACourse}/>
+                        <Route path="/admin/lecturer" component={ALecturer}/>
                         </Switch>
                     </Container>
                 </Box>

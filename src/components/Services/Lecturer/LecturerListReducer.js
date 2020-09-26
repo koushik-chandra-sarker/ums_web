@@ -1,26 +1,26 @@
-import {FETCH_LECTURER_REQUEST, FETCH_LECTURER_SUCCESS, FETCH_LECTURER_FAILURE} from "./LecturerTypes";
+import {FETCH_LECTURER_LIST_REQUEST, FETCH_LECTURER_LIST_SUCCESS, FETCH_LECTURER_LIST_FAILURE} from "./LecturerTypes";
 
 
 const initialState ={
     loading:false,
-    data:{},
+    data:[],
     error:""
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case FETCH_LECTURER_REQUEST:
+        case FETCH_LECTURER_LIST_REQUEST:
             return {
                 ...state,
                 loading: true
             };
-        case FETCH_LECTURER_SUCCESS:
+        case FETCH_LECTURER_LIST_SUCCESS:
             return {
                 data: action.payload,
                 error: "",
                 loading: false
             };
-        case FETCH_LECTURER_FAILURE:
+        case FETCH_LECTURER_LIST_FAILURE:
             return {
                 data: [],
                 error: action.payload,

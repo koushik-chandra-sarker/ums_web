@@ -5,11 +5,6 @@ import {makeStyles} from "@material-ui/core/styles";
 import ThreeCards from "./ThreeCards";
 import Scheduler from "../ClassScheduler";
 import ScheduleIcon from '@material-ui/icons/Schedule';
-import dashboard from "../../Images/dashboard.svg";
-import Students from "../../Images/student.svg";
-import classes from "../../Images/classes.svg";
-import assignment from "../../Images/assignment.svg";
-import attendance from "../../Images/attendance.svg";
 
 const useStyles = makeStyles({
     content_header: {
