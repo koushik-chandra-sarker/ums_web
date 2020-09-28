@@ -31,6 +31,35 @@ export const getProgrammeList = (username,password)=> async dispatch =>{
 };
 
 
+export const getProgramme = (code,username,password)=> async dispatch =>{
+
+    try{
+        dispatch({
+            type:"PROGRAMME_LOADING"
+        })
+
+
+        const response = await axios.get(`${base_url}/programmes/${code}`,
+            {
+                auth: {
+                    username: username,
+                    password: password
+                }
+            }
+        )
+
+        dispatch({
+            type:"PROGRAMME_SUCCESS",
+            payload:response.data
+        })
+    }catch (e) {
+        dispatch({
+            type:"PROGRAMME_ERROR"
+        })
+    }
+};
+
+
 
 export const addProgramme = (data,username,password)=>{
 

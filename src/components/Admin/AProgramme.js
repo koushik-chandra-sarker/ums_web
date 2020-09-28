@@ -101,7 +101,7 @@ const AProgramme = () => {
     const [expanded, setExpanded] = React.useState(false);
 
     const [SelectedCampus, setSelectedCampus] = useState({
-        id: campusList[0].id
+        id: `${!_.isEmpty(campusList)?campusList[0].id:''}`
     });
     const [editDialog, setEditDialog] = useState({
         open: false,
@@ -189,7 +189,7 @@ const AProgramme = () => {
                                     //     id: 'outlined-age-native-simple',
                                     // }}
                                 >
-                                    <option aria-label="None" value="">None</option>
+                                    <option aria-label="None" value=""/>
                                     {
                                         !_.isEmpty(campusList) ?
                                             campusList.map(value => {

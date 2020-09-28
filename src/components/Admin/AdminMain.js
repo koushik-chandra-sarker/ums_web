@@ -4,11 +4,8 @@ import SideNav from "../SideNav"
 import Content from "../Common/Content"
 import TopNav from "../TopNav"
 import dashboard from "../../Images/dashboard.svg"
-import assignment from "../../Images/assignment.svg"
 import ProfileDialogOpen from "../Context/ProfileDialogOpen"
 import {useDispatch, useSelector} from "react-redux"
-import Pre_reg1 from "../../Images/Pre_reg1.svg"
-import grade from "../../Images/grade.svg"
 import campus from "../../Images/campus.svg"
 import school from "../../Images/school.svg"
 import programme from "../../Images/Programme.svg"
@@ -99,7 +96,7 @@ const AdminMain = () => {
         <>
             <ProfileDialogOpen.Provider value={{openProfileDialog, setOpenProfileDialog}}>
                 <TopNav
-                    person={user.lecturer===null?user.student:user.lecturer}
+                    person={user.lecturer!==null?user.lecturer:user.superuser!==null? user.superuser:user.student}
                 />
             </ProfileDialogOpen.Provider>
 

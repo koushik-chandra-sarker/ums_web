@@ -142,7 +142,7 @@ export default function ProfileDialog(props) {
                         </Grid>
                         <Grid item>
                             <Typography component={"h4"}>
-                                School: {props.person.school ? props.person.school.name : props.person.programme.school.name}
+                                {/*School: {props.person.school ? props.person.school.name : props.person.programme.school.name}*/}
                             </Typography> <br/>
                         </Grid>
                         <Grid item>

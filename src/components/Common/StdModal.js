@@ -162,14 +162,14 @@ const StdModal = /*forwardRef((props, ref)*/ () => {
                                                     : <></>
                                             }
                                         </Typography>
-                                        <Typography component={"h4"}>
+                                        {/*<Typography component={"h4"}>
                                             <span>Programme: </span>
                                             {
                                                 !_.isEmpty(student)?
                                                     student.programme.title
                                                     :<></>
                                             }
-                                        </Typography>
+                                        </Typography>*/}
                                     </Typography>
                                     <br/>
                                     {

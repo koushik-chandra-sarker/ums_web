@@ -41,6 +41,9 @@ import EditProgrammeDialog from "./EditProgrammeDialog";
 import AddCourseForm from "./AddCourseForm";
 import {dropCourse} from "../Services/Courses/CourseAction";
 import EditCourseDialog from "./EditCourseDialog";
+import AddLecturerForm from "./AddLecturerForm";
+import {dropLecturer, getLecturer} from "../Services/Lecturer/LecturerAction";
+import EditLecturerDialog from "./EditLecturerDialog";
 // import EditSchoolContext from "../Context/EditSchoolContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -95,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
     }
 
 }))
-// export const EditCourseContext = React.createContext();
+export const EditLecturerContext = React.createContext();
 const ALecturer = () => {
 
     const classes = useStyles();
@@ -106,12 +109,12 @@ const ALecturer = () => {
     const [expanded, setExpanded] = React.useState(false);
 
     const [SelectedSchool, setSelectedSchool] = useState({
-        id: schoolList[0].id
+        id: `${!_.isEmpty(schoolList)?schoolList[0].id:''}`
     });
-    // const [editDialog, setEditDialog] = useState({
-    //     open: false,
-    //     code: '', title: '', credit: '', programme: {code: ''}, schoolId:''
-    // })
+    const [editDialog, setEditDialog] = useState({
+        open: false,
+        schoolId: ''
+    })
     useEffect(() => {
         dispatch(getSchool(SelectedSchool.id, credential.username, credential.password))
     }, [])
@@ -132,12 +135,11 @@ const ALecturer = () => {
 
     function refresh() {
         dispatch(getSchoolList(credential.username, credential.password))
-        // dispatch(getProgrammeList(credential.username,credential.password))
     }
 
 
-    /* function handleDeleteCourse(code) {
-         dropCourse(code, credential.username, credential.password)
+     function handleDeleteLecturer(code) {
+         dropLecturer(code, credential.username, credential.password)
              .then(r => {
                  if (r === 200) {
                      toast("Course Dropped Successful.");
@@ -147,16 +149,15 @@ const ALecturer = () => {
              .catch(reason => {
                  swal(reason.message)
              })
-     }*/
+     }
 
-    const campus = useSelector(store => store.Campus)
 
 
     return (
         <div className={classes.root}>
-            {/*<EditCourseContext.Provider value={{editDialog, setEditDialog}}>
-                <EditCourseDialog/>
-            </EditCourseContext.Provider>*/}
+            <EditLecturerContext.Provider value={{editDialog, setEditDialog}}>
+                <EditLecturerDialog/>
+            </EditLecturerContext.Provider>
             <Grid container spacing={3}>
                 <Grid item xs={12} spacing={3} container justify={"space-between"} alignItems={"center"}>
                     <ContentHeader
@@ -166,7 +167,7 @@ const ALecturer = () => {
                     <IconButton style={{border: "1px solid"}} onClick={refresh} color="secondary" aria-label="Refresh">
                         <RefreshIcon/>
                     </IconButton>
-                    <Grid item sm={12} lg={8}>
+                    <Grid item sm={12} lg={5}>
                         <Typography component={"div"} className={classes.card}
                                     style={{paddingRight: "40px"}}>
                             <FormControl fullWidth variant="outlined" className={classes.formControl}>
@@ -180,6 +181,7 @@ const ALecturer = () => {
                                     }}
                                     label="Select Campus"
                                 >
+                                    <option aria-label="None" value=""/>
                                     {
                                         !_.isEmpty(schoolList) ?
                                             schoolList.map(value => {
@@ -206,8 +208,8 @@ const ALecturer = () => {
 
                         </Typography>
                     </Grid>
-                    <Grid item sm={12} lg={4}>
-                        <AddCourseForm schoolId={SelectedSchool.id}/>
+                    <Grid item sm={12} lg={7}>
+                        <AddLecturerForm schoolId={SelectedSchool.id}/>
                     </Grid>
 
                 </Grid>
@@ -271,17 +273,14 @@ const ALecturer = () => {
                                                         edge="end"
                                                         aria-label="delete"
                                                         style={{marginRight: "10px"}}
-                                                        /* onClick={() => {
+                                                         onClick={() => {
                                                              setEditDialog({
                                                                  ...editDialog,
                                                                  open: true,
-                                                                 code: v.code,
-                                                                 title: v.title,
-                                                                 credit: v.credit,
-                                                                 programme: {code: value.code},
                                                                  schoolId: SelectedSchool.id
                                                              })
-                                                         }}*/
+                                                            dispatch(getLecturer(value.id ,credential.username, credential.password))
+                                                         }}
 
                                                     >
                                                         <EditIcon/>
@@ -289,9 +288,9 @@ const ALecturer = () => {
                                                     <IconButton
                                                         edge="end"
                                                         aria-label="delete"
-                                                        /* onClick={() => {
-                                                             handleDeleteCourse(v.code)
-                                                         }}*/
+                                                         onClick={() => {
+                                                             handleDeleteLecturer(value.id)
+                                                         }}
                                                     >
                                                         <DeleteIcon/>
                                                     </IconButton>
@@ -312,8 +311,8 @@ const ALecturer = () => {
 
         }
 
-        if (campus.error !== "") {
-            return <p>{campus.error}</p>
+        if (school.error !== "") {
+            return <p>{school.error}</p>
         }
 
 

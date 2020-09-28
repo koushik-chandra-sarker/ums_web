@@ -106,7 +106,7 @@ const ACourse = () => {
     const [expanded, setExpanded] = React.useState(false);
 
     const [SelectedSchool, setSelectedSchool] = useState({
-        id: schoolList[0].id
+        id: `${!_.isEmpty(schoolList)?schoolList[0].id:''}`
     });
     const [editDialog, setEditDialog] = useState({
         open: false,
@@ -183,6 +183,7 @@ const ACourse = () => {
                                     //     id: 'outlined-age-native-simple',
                                     // }}
                                 >
+                                    <option aria-label="None" value=""/>
                                     {
                                         !_.isEmpty(schoolList) ?
                                             schoolList.map(value => {

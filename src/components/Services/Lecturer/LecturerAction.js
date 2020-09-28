@@ -69,6 +69,56 @@ export const getLecturer = (id,username,password)=>{
 }
 
 
+export const addLecturer = (data,username,password)=>{
+
+    return axios.post(`${base_url}/lecturers/add`,data,
+        {
+            auth: {
+                username: username,
+                password: password
+            }
+        },
+    ).then(r => {
+        return r.status
+    }).catch(reason => {return reason.message})
+
+}
+
+export const dropLecturer = (id,username,password)=>{
+
+    return axios.delete(`${base_url}/lecturers/delete/${id}`,
+        {
+            auth: {
+                username: username,
+                password: password
+            }
+        }
+    ).then(r => {
+        return r.status
+    }).catch(reason => {return reason.message})
+
+}
+
+
+
+export const updateLecturer = (data,username,password)=>{
+
+    return axios.put(`${base_url}/lecturers/update`,data,
+        {
+            auth: {
+                username: username,
+                password: password
+            }
+        },
+    ).then(r => {
+        return r.status
+    }).catch(reason => {return reason.message})
+
+}
+
+
+
+
 export const fetchLecturer_coursesList = (username,password)=>{
     return dispatch =>{
         dispatch(

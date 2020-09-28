@@ -23,7 +23,7 @@ const tableColumn = [
     "Id",
     "Name",
     "Email",
-    "Programme",
+    // "Programme",
     "Phone"
 ]
 
@@ -111,7 +111,7 @@ const Table = (props) => {
                                 <td data-label="Id">{value.id}</td>
                                 <td data-label="Name">{value.firstName} {value.middleName} {value.lastName}</td>
                                 <td data-label="Email">{value.email}</td>
-                                <td data-label="Programme">{value.programme.code? value.programme.code : value.programme}</td>
+                                {/*<td data-label="Programme">{value.programme.code? value.programme.code : value.programme}</td>*/}
                                 <td data-label="Phone">
                                     {
                                         value.phone.map((v)=>{

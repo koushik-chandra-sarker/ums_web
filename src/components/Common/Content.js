@@ -15,6 +15,8 @@ import ASchool from "../Admin/ASchool";
 import AProgramme from "../Admin/AProgramme";
 import ACourse from "../Admin/ACourse";
 import ALecturer from "../Admin/ALecturer";
+import AStudent from "../Admin/AStudent";
+import AUser from "../Admin/AUser";
 
 const Content = () => {
     const dispatch = useDispatch();
@@ -40,6 +42,8 @@ const Content = () => {
                         <Route path="/admin/programme" component={AProgramme}/>
                         <Route path="/admin/course" component={ACourse}/>
                         <Route path="/admin/lecturer" component={ALecturer}/>
+                        <Route path="/admin/student" component={AStudent}/>
+                        <Route path="/admin/user" component={AUser}/>
                         </Switch>
                     </Container>
                 </Box>

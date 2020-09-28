@@ -5,7 +5,14 @@ import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import {useDispatch, useSelector} from "react-redux";
 import {setModalControl} from "../Services/StdModelControl/StdModelControlAction";
-import {fetchStudent} from "../Services/Student/StudentAction";
+import {dropStudent, fetchStudent} from "../Services/Student/StudentAction";
+import IconButton from "@material-ui/core/IconButton";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+import credential from "../Common/Credential";
+import {toast} from "react-toastify";
+import Button from "@material-ui/core/Button";
+import _ from 'lodash'
 
 const useStyles = makeStyles((theme) => ({
     popover: {
@@ -33,20 +40,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const tableColumn = [
-    "Id",
-    "Name",
+    "User Id",
+    "Username",
     "Email",
-    // "Programme",
-    "Phone"
+    "Active status",
+    "Roles",
+    "Action"
 ]
 
 
-const Table1 = (props) => {
+const UserTable = (props) => {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const classes = useStyles();
     const dispatch = useDispatch();
-
+    // const [editDialog, setEditDialog] = useState({
+    //     open: false,
+    //     programmeCode:props.programmeCode
+    //
+    // })
 
 
     const handlePopoverOpen = (event) => {
@@ -92,9 +104,23 @@ const Table1 = (props) => {
     }
 
 
+    function handleDeleteStudent(id) {
+        // dropStudent(id, credential.username, credential.password)
+        //     .then(r => {
+        //         if (r === 200) {
+        //             toast("Student Dropped Successful.");
+        //             dispatch(getProgramme(props.programmeCode, credential.username, credential.password))
+        //         }
+        //     })
+        //     .catch(reason => {
+        //         swal(reason.message)
+        //     })
+    }
 
     return (
         <div className="table_main">
+            {/*<EditStudentContext.Provider value={{editDialog, setEditDialog}}> <EditStudentDialog/>*/}
+            {/*</EditStudentContext.Provider>*/}
             <table className={classes.table}>
                 <thead>
                 <tr>
@@ -107,12 +133,12 @@ const Table1 = (props) => {
                 </thead>
                 <tbody>
                 <div className="massage">more info</div>
-                {props.person.map((value, index) => {
+                {props.users.map((value, index) => {
                     return (
                         <>
                             <tr
                                 onDoubleClick={() => {
-                                    rowEvent(value.student.id)
+                                    rowEvent(value.id)
                                 }}
                                 aria-owns={open ? 'mouse-over-popover' : undefined}
                                 aria-haspopup="true"
@@ -120,23 +146,62 @@ const Table1 = (props) => {
                                 onMouseLeave={handlePopoverClose}
                             >
                                 {ShowPopover()}
-                                <td data-label="Id">{value.student.id}</td>
-                                <td data-label="Name">{value.student.firstName} {value.student.middleName} {value.student.lastName}</td>
-                                <td data-label="Email">{value.student.email}</td>
-                                {/*<td data-label="Programme">{value.student.programme.code? value.student.programme.code : value.student.programme}</td>*/}
-                                <td data-label="Phone">
+                                <td data-label="Id">{value.id}</td>
+                                <td data-label="Name">{value.username}</td>
+                                <td data-label="Email">{value.email}</td>
+                                <td data-label="Active status">{`${value.active}`}</td>
+                                <td data-label="Roles">
                                     {
-                                        value.student.phone.map((v)=>{
+                                        !_.isEmpty(value.roles)?value.roles.map((v)=>{
                                             return(
                                                 <>
-                                                    {v.phone_no}
+                                                    {v.role}
                                                     <br/>
                                                 </>
                                             )
                                         })
+                                            :
+                                            <></>
                                     }
                                 </td>
+                                <td data-label="Action">
+
+                                    <Button size={"small"} color={"default"} variant={"contained"}  style={{margin: "5px", background:"#f5f5f5"}}>
+                                        Create User
+                                    </Button>
+
+                                    <IconButton
+                                        size={"small"}
+                                        edge="end"
+                                        aria-label="delete"
+                                        style={{margin: "5px", background:"#f5f5f5"}}
+
+                                        // onClick={event => {
+                                        //     setEditDialog({
+                                        //         ...editDialog, open: true
+                                        //     })
+                                        //     dispatch(fetchStudent(value.id, credential.username, credential.password))
+                                        // }}
+
+                                    >
+                                        <EditIcon/>
+                                    </IconButton>
+                                    <IconButton
+                                        size={"small"}
+                                        edge="end"
+                                        aria-label="delete"
+                                        color={"secondary"}
+                                        style={{ margin: "5px", background:"#f5f5f5"}}
+                                        onClick={() => {
+                                            handleDeleteStudent(value.id)
+                                        }}
+                                    >
+                                        <DeleteIcon/>
+                                    </IconButton>
+
+                                </td>
                             </tr>
+
 
                         </>
                     )
@@ -153,4 +218,4 @@ const Table1 = (props) => {
 
 
 
-export default Table1;
+export default UserTable;

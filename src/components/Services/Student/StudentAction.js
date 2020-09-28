@@ -72,6 +72,57 @@ export const fetchStudent = (id,username,password)=>{
 
     }
 }
+
+
+
+export const addStudent = (data,username,password)=>{
+
+    return axios.post(`${base_url}/students/add`,data,
+        {
+            auth: {
+                username: username,
+                password: password
+            }
+        },
+    ).then(r => {
+        return r.status
+    }).catch(reason => {return reason.message})
+
+}
+
+export const updateStudent = (data,username,password)=>{
+
+    return axios.put(`${base_url}/students/update`,data,
+        {
+            auth: {
+                username: username,
+                password: password
+            }
+        },
+    ).then(r => {
+        return r.status
+    }).catch(reason => {return reason.message})
+
+}
+
+
+export const dropStudent = (id,username,password)=>{
+
+    return axios.delete(`${base_url}/students/delete/${id}`,
+        {
+            auth: {
+                username: username,
+                password: password
+            }
+        }
+    ).then(r => {
+        return r.status
+    }).catch(reason => {return reason.message})
+
+}
+
+
+
 export const dropStudentCourse = (ssn,username,password)=>{
 
     return axios.delete(`${base_url}/student_courses/delete/${ssn}`,
