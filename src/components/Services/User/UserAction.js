@@ -29,3 +29,46 @@ export const getUserList = (username,password)=> async dispatch =>{
         })
     }
 };
+
+export const createStdUser = (id,username,password)=>{
+
+    return axios.get(`${base_url}/students/createUser/${id}`,
+        {
+            auth: {
+                username: username,
+                password: password
+            }
+        },
+    ).then(r => {
+        return r.data
+    }).catch(reason => {return reason.message})
+
+}
+export const createLecUser = (id,username,password)=>{
+
+    return axios.get(`${base_url}/lecturers/createUser/${id}`,
+        {
+            auth: {
+                username: username,
+                password: password
+            }
+        },
+    ).then(r => {
+        return r.data
+    }).catch(reason => {return reason.message})
+
+}
+export const dropUser = (id,username,password)=>{
+
+    return axios.delete(`${base_url}/users/delete/${id}`,
+        {
+            auth: {
+                username: username,
+                password: password
+            }
+        }
+    ).then(r => {
+        return r.status
+    }).catch(reason => {return reason.message})
+
+}

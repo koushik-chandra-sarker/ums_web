@@ -13,7 +13,7 @@ import {setLoginAsOpen} from "../Services/LoginAs/LoginAsAction";
 
 const Login = () => {
 
-    const user = useSelector(state => state.user.data) //for multi-reducer
+    const user = useSelector(state => state.user.data)
     const dispatch = useDispatch()
 
     const [userInfo, setUserInfo] = useState({
@@ -27,23 +27,6 @@ const Login = () => {
     }
 
 
-    /*const ShowData = () => {
-        if (!_.isEmpty(user.data)) {
-            return (
-                <Redirect to="/teacher/dashboard"/>
-            )
-        }
-        if (user.loading) {
-            return <p>loading...</p>
-        }
-        if (user.errorMsg !== "") {
-            return <p>{user.errorMsg}</p>
-        }
-
-        return <p>Unable to get Data</p>
-
-    }
-*/
     const [loginAsDialogOpen,setOpenLoginAsDialogOpen] = useState({
         open:false,
         activeUser:false
@@ -64,17 +47,6 @@ const Login = () => {
 
     const formHandler = () => {
         FetchData()
-       /* if (_.isEmpty(user)) {
-            dispatch(setAuth(null, ""))
-        }*/
-       /* if (!_.isEmpty(user)){
-            if (user.roles.length > 1){
-                setOpenLoginAsDialogOpen({...loginAsDialogOpen, open:true,activeUser: user.active})
-            }
-        }*/
-
-
-
     }
 
 

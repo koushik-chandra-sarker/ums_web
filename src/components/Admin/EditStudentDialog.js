@@ -73,12 +73,12 @@ const EditStudentDialog = () => {
     const [SelectedProgramme, setSelectedProgramme] = useState({
         code: openPro.editDialog.programmeCode
     });
+
     useEffect(() => {
 
         setStudent(prevState => std)
 
     }, [std])
-
     const dispatch = useDispatch();
     const [selectedBDate, setSelectedBDate] = React.useState(new Date());
     const [selectedGender, setSelectedGender] = React.useState("Male");

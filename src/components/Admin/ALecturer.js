@@ -44,6 +44,8 @@ import EditCourseDialog from "./EditCourseDialog";
 import AddLecturerForm from "./AddLecturerForm";
 import {dropLecturer, getLecturer} from "../Services/Lecturer/LecturerAction";
 import EditLecturerDialog from "./EditLecturerDialog";
+import {createLecUser, createStdUser, getUserList} from "../Services/User/UserAction";
+import credential from "../Common/Credential";
 // import EditSchoolContext from "../Context/EditSchoolContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -161,13 +163,13 @@ const ALecturer = () => {
             <Grid container spacing={3}>
                 <Grid item xs={12} spacing={3} container justify={"space-between"} alignItems={"center"}>
                     <ContentHeader
-                        title="Courses"
+                        title="Lecturers"
                         style={classes.content_header}
                     />
                     <IconButton style={{border: "1px solid"}} onClick={refresh} color="secondary" aria-label="Refresh">
                         <RefreshIcon/>
                     </IconButton>
-                    <Grid item sm={12} lg={5}>
+                    <Grid item sm={12} lg={6}>
                         <Typography component={"div"} className={classes.card}
                                     style={{paddingRight: "40px"}}>
                             <FormControl fullWidth variant="outlined" className={classes.formControl}>
@@ -208,7 +210,7 @@ const ALecturer = () => {
 
                         </Typography>
                     </Grid>
-                    <Grid item sm={12} lg={7}>
+                    <Grid item sm={12} lg={6}>
                         <AddLecturerForm schoolId={SelectedSchool.id}/>
                     </Grid>
 
@@ -218,6 +220,14 @@ const ALecturer = () => {
         </div>
     );
 
+
+    function CreateUser(id) {
+        createLecUser(id, credential.username, credential.password)
+            .then(r => {
+                swal(`${r}`)
+                dispatch(getUserList(credential.username, credential.password))
+            })
+    }
 
     function showCampus() {
         if (school.loading) {
@@ -269,10 +279,18 @@ const ALecturer = () => {
                                                 />
 
                                                 <ListItemSecondaryAction>
+                                                    <Button  size={"small"} color={"default"}
+                                                             variant={"outlined"}
+                                                             style={{margin: "5px", background:"#f5f5f5", textTransform:"capitalize"}}
+                                                            onClick={()=>CreateUser(value.id)}
+                                                    >
+                                                        Create User
+                                                    </Button>
                                                     <IconButton
+                                                        size={"small"}
                                                         edge="end"
                                                         aria-label="delete"
-                                                        style={{marginRight: "10px"}}
+                                                        style={{margin: "5px", border:"1px solid"}}
                                                          onClick={() => {
                                                              setEditDialog({
                                                                  ...editDialog,
@@ -286,8 +304,10 @@ const ALecturer = () => {
                                                         <EditIcon/>
                                                     </IconButton>
                                                     <IconButton
+                                                        size={"small"}
                                                         edge="end"
                                                         aria-label="delete"
+                                                        style={{margin: "5px", border:"1px solid"}}
                                                          onClick={() => {
                                                              handleDeleteLecturer(value.id)
                                                          }}

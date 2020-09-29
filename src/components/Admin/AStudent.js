@@ -83,11 +83,14 @@ const AStudent = () => {
     const dispatch = useDispatch();
 
     const [SelectedProgramme, setSelectedProgramme] = useState({
-        code: `${!_.isEmpty(programmeList)?programmeList[0].code:''}`
+        code: `${!_.isEmpty(programmeList)?programmeList[0].code : ''}`
     });
 
     useEffect(() => {
         dispatch(getSchoolList(credential.username, credential.password))
+        if(!_.isEmpty(programmeList)){
+            dispatch(getProgramme(programmeList[0].code, credential.username, credential.password))
+        }
     }, [])
 
 
@@ -134,7 +137,7 @@ const AStudent = () => {
                                     }}
                                     label="Select Programme"
                                 >
-                                    <option aria-label="None" value=""/>
+                                    {/*<option aria-label="None" value=""/>*/}
                                     {
                                         !_.isEmpty(programmeList) ?
                                             programmeList.map(value => {
@@ -151,7 +154,7 @@ const AStudent = () => {
                             <Typography component={"div"} className={classes.content}>
 
                                 <FormControl fullWidth variant="outlined" className={classes.formControl}>
-                                    {showProgrammes()}
+                                    {showStudents()}
 
                                 </FormControl>
                             </Typography>
@@ -170,7 +173,7 @@ const AStudent = () => {
     );
 
 
-    function showProgrammes() {
+    function showStudents() {
         if (programme.loading) {
             return (
                 <>

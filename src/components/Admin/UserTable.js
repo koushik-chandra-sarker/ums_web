@@ -13,6 +13,8 @@ import credential from "../Common/Credential";
 import {toast} from "react-toastify";
 import Button from "@material-ui/core/Button";
 import _ from 'lodash'
+import {dropUser, getUserList} from "../Services/User/UserAction";
+import swal from "sweetalert";
 
 const useStyles = makeStyles((theme) => ({
     popover: {
@@ -71,11 +73,11 @@ const UserTable = (props) => {
 
     const open = Boolean(anchorEl);
     const rowEvent = (id) => {
-        dispatch(setModalControl(true,id))
-        const credential = JSON.parse(localStorage.getItem("credential"))
-        dispatch(fetchStudent(id,credential.username,credential.password))
+        // dispatch(setModalControl(true,id))
+        // const credential = JSON.parse(localStorage.getItem("credential"))
+        // dispatch(fetchStudent(id,credential.username,credential.password))
 
-
+        swal("We are working in this action.")
     }
     const ShowPopover = ()=>{
         return(
@@ -104,17 +106,15 @@ const UserTable = (props) => {
     }
 
 
-    function handleDeleteStudent(id) {
-        // dropStudent(id, credential.username, credential.password)
-        //     .then(r => {
-        //         if (r === 200) {
-        //             toast("Student Dropped Successful.");
-        //             dispatch(getProgramme(props.programmeCode, credential.username, credential.password))
-        //         }
-        //     })
-        //     .catch(reason => {
-        //         swal(reason.message)
-        //     })
+
+    function handleDeleteStdUser(id) {
+        dropUser(id, credential.username, credential.password)
+            .then(r  =>{
+                if (r===200){
+                    toast("User Successfully Dropped.");
+                    dispatch(getUserList(credential.username, credential.password))
+                }
+            })
     }
 
     return (
@@ -165,11 +165,6 @@ const UserTable = (props) => {
                                     }
                                 </td>
                                 <td data-label="Action">
-
-                                    <Button size={"small"} color={"default"} variant={"contained"}  style={{margin: "5px", background:"#f5f5f5"}}>
-                                        Create User
-                                    </Button>
-
                                     <IconButton
                                         size={"small"}
                                         edge="end"
@@ -193,7 +188,7 @@ const UserTable = (props) => {
                                         color={"secondary"}
                                         style={{ margin: "5px", background:"#f5f5f5"}}
                                         onClick={() => {
-                                            handleDeleteStudent(value.id)
+                                            handleDeleteStdUser(value.id)
                                         }}
                                     >
                                         <DeleteIcon/>

@@ -18,6 +18,7 @@ import {toast} from "react-toastify";
 import {getCampus, getCampusList} from "../Services/Campus/CampusAction";
 import swal from "sweetalert";
 import Button from "@material-ui/core/Button";
+import {createStdUser, getUserList} from "../Services/User/UserAction";
 
 const useStyles = makeStyles((theme) => ({
     popover: {
@@ -122,6 +123,14 @@ const StTable = (props) => {
             })
     }
 
+    function CreateUser(id) {
+        createStdUser(id, credential.username, credential.password)
+            .then(r => {
+                swal(`${r}`)
+                dispatch(getUserList(credential.username, credential.password))
+            })
+    }
+
     return (
         <div className="table_main">
             <EditStudentContext.Provider value={{editDialog, setEditDialog}}> <EditStudentDialog/>
@@ -169,7 +178,9 @@ const StTable = (props) => {
                                 </td>
                                 <td data-label="Action">
 
-                                    <Button size={"small"} color={"default"} variant={"contained"}  style={{margin: "5px", background:"#f5f5f5"}}>
+                                    <Button size={"small"} color={"default"} variant={"contained"}  style={{margin: "5px", background:"#f5f5f5"}}
+                                        onClick={()=>CreateUser(value.id)}
+                                    >
                                         Create User
                                     </Button>
 
