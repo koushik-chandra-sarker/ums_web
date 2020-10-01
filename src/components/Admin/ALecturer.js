@@ -39,13 +39,14 @@ import AddProgrammeForm from "./AddProgrammeForm";
 import {dropProgramme, getProgrammeList} from "../Services/Programme/ProgrammeAction";
 import EditProgrammeDialog from "./EditProgrammeDialog";
 import AddCourseForm from "./AddCourseForm";
-import {dropCourse} from "../Services/Courses/CourseAction";
+import {dropCourse, getCourseList} from "../Services/Courses/CourseAction";
 import EditCourseDialog from "./EditCourseDialog";
 import AddLecturerForm from "./AddLecturerForm";
 import {dropLecturer, getLecturer} from "../Services/Lecturer/LecturerAction";
 import EditLecturerDialog from "./EditLecturerDialog";
 import {createLecUser, createStdUser, getUserList} from "../Services/User/UserAction";
 import credential from "../Common/Credential";
+import {setLecModalControl} from "../Services/LecModelControl/LecModelControlAction";
 // import EditSchoolContext from "../Context/EditSchoolContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -229,6 +230,11 @@ const ALecturer = () => {
             })
     }
 
+    function handleLecModal(id) {
+        dispatch(setLecModalControl(true,id))
+        dispatch(getLecturer(id,credential.username,credential.password))
+    }
+
     function showCampus() {
         if (school.loading) {
             return (
@@ -262,9 +268,10 @@ const ALecturer = () => {
                                     return (
                                         <>
 
-                                            <ListItem>
+                                            <ListItem >
                                                 <ListItemAvatar>
                                                     <Avatar
+                                                        onClick={()=>{handleLecModal(value.id)}}
                                                         src={lecturerIcon}/>
                                                 </ListItemAvatar>
                                                 <ListItemText

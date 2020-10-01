@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import swal from 'sweetalert';
+import {useDispatch, useSelector} from "react-redux";
+import {fetchUserBySId} from "../Services/User/UserAction";
+import credential from "../Common/Credential";
 const useStyles = makeStyles({
     infoCard:{
         boxShadow: "inset 3px 3px 3px #e5e5e5, inset -3px -3px 5px #ffffff",
@@ -39,6 +42,7 @@ const useStyles = makeStyles({
 });
 const PersonalInfo = (props) => {
     const classes = useStyles();
+    const user = useSelector(store => store.user1.data)
     function sweetAlert() {
         swal("This service not available now.","");
     }
@@ -122,11 +126,11 @@ const PersonalInfo = (props) => {
                         </Typography>
                         <Grid item xs={6}>
                             <Typography component={"h5"} className={classes.infoTitle} style={{color:"#3d5af1"}}>User ID</Typography>
-                            <Typography component={"h4"} className={classes.infoSubtitle}>{props.person.user?props.person.user.id:<></>}</Typography>
+                            <Typography component={"h4"} className={classes.infoSubtitle}>{user?user.id:<></>}</Typography>
                         </Grid>
                         <Grid item xs={6}>
                             <Typography component={"h5"} className={classes.infoTitle}>User Name</Typography>
-                            <Typography component={"h4"} className={classes.infoSubtitle}>{props.person.user?props.person.user.username:<></>}</Typography>
+                            <Typography component={"h4"} className={classes.infoSubtitle}>{user?user.username:<></>}</Typography>
                         </Grid>
                         <IconButton
                             className={classes.editIcon}

@@ -16,6 +16,11 @@ import {makeStyles} from "@material-ui/styles";
 import defaultProfilePic from "../../Images/DefaultprofilePic.png"
 import {setModalControl} from "../Services/StdModelControl/StdModelControlAction";
 import {fetchStudent} from "../Services/Student/StudentAction";
+import {fetchUserByLId, fetchUserBySId} from "../Services/User/UserAction";
+import credential from "./Credential";
+import userType from "./userType";
+import {setLecModalControl} from "../Services/LecModelControl/LecModelControlAction";
+import {getLecturer} from "../Services/Lecturer/LecturerAction";
 
 const styles = (theme) => ({
     root: {
@@ -81,17 +86,26 @@ export default function ProfileDialog(props) {
     const user = useSelector(store => store.user.data)
     const classes = useStyles();
     const dispatch = useDispatch();
+
     const handleClose = () => {
         open.setOpenProfileDialog(false);
 
     };
-    const student = useSelector(store => store.student.data);
     const rowEvent = (id) => {
-        dispatch(setModalControl(true,id))
-        const credential = JSON.parse(localStorage.getItem("credential"))
-        dispatch(fetchStudent(id,credential.username,credential.password))
-        open.setOpenProfileDialog(false);
-        console.log(props.person)
+        if (userType==="STUDENT"){
+            dispatch(setModalControl(true,id))
+            dispatch(fetchStudent(id,credential.username,credential.password))
+            open.setOpenProfileDialog(false);
+            dispatch(fetchUserBySId(props.person.id,credential.username,credential.password))
+        }
+        else if (userType === "LECTURER"){
+            dispatch(setLecModalControl(true,id))
+            dispatch(getLecturer(id,credential.username,credential.password))
+            open.setOpenProfileDialog(false);
+            dispatch(fetchUserByLId(props.person.id,credential.username,credential.password))
+        }
+
+
 
 
     }

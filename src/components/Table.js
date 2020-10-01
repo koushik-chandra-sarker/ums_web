@@ -6,6 +6,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {useDispatch, useSelector} from "react-redux";
 import {setModalControl} from "./Services/StdModelControl/StdModelControlAction";
 import {fetchStudent} from "./Services/Student/StudentAction";
+import {fetchUserBySId} from "./Services/User/UserAction";
 
 const useStyles = makeStyles((theme) => ({
     popover: {
@@ -50,6 +51,7 @@ const Table = (props) => {
         dispatch(setModalControl(true,id))
         const credential = JSON.parse(localStorage.getItem("credential"))
         dispatch(fetchStudent(id,credential.username,credential.password))
+        dispatch(fetchUserBySId(id,credential.username,credential.password))
 
 
     }

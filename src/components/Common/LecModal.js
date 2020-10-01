@@ -15,6 +15,9 @@ import StdProfile from "../Student/stdProfile";
 import {useDispatch, useSelector} from "react-redux";
 import {setModalControl} from "../Services/StdModelControl/StdModelControlAction";
 import _ from "lodash"
+import {fetchUserBySId} from "../Services/User/UserAction";
+import {setLecModalControl} from "../Services/LecModelControl/LecModelControlAction";
+import LecCourseTransferList from "./LecCourseTransferList";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -89,27 +92,20 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 
-const StdModal = /*forwardRef((props, ref)*/ () => {
+const LecModal = () => {
     useEffect(() => {
         userType==="STUDENT"? setViewProfile(true):setViewProfile(false)
     },[])
     const userType = localStorage.getItem("user_type")
-    const crlModal = useSelector(store => store.stdModalControl.data)
-    const student = useSelector(store => store.student.data);
+    const crlModal = useSelector(store => store.LecModalControl.data)
+    const lecturer = useSelector(store => store.lecturer.data)
     const classes = useStyles();
     const open = crlModal.open;
     const [viewProfile,setViewProfile] = useState(false)
     const dispatch = useDispatch();
 
-   /* useImperativeHandle(ref, () => ({
-        handleClickOpen
-    }));*/
-   /* const handleClickOpen = () => {
-        dispatch(setModalControl(true,null))
-    };*/
-
     const handleClose = () => {
-        dispatch(setModalControl(false,null))
+        dispatch(setLecModalControl(false,null))
 
     };
     return (
@@ -121,7 +117,7 @@ const StdModal = /*forwardRef((props, ref)*/ () => {
 
                         <Grid item xs={12} justify={"center"}>
                             <Typography className={classes.title} component={"h4"} variant={"h4"} align={"center"}>
-                                Student Details
+                                Details
                             </Typography>
                             <IconButton className={classes.closeIcon} edge="start" color="inherit"
                                         onClick={handleClose}
@@ -137,23 +133,23 @@ const StdModal = /*forwardRef((props, ref)*/ () => {
                                         <Avatar alt="Remy Sharp" src={defaultProfilePic}/>
                                     </Typography>
                                     <Typography component={"div"} className={classes.stdDetails}>
-                                        <Typography component={"h4"}> <span>ID: </span>{student.id}</Typography>
+                                        <Typography component={"h4"}> <span>ID: </span>{lecturer.id}</Typography>
                                         <Typography component={"h4"}> <span>Name: </span>
                                             {
-                                                student.middleName!== null ?
-                                                    `${student.firstName} ${student.middleName} ${student.lastName}`
+                                                lecturer.middleName!== null ?
+                                                    `${lecturer.firstName} ${lecturer.middleName} ${lecturer.lastName}`
                                                     :
-                                                    `${student.firstName} ${student.lastName}`
+                                                    `${lecturer.firstName} ${lecturer.lastName}`
                                             }
                                         </Typography>
                                         <Typography component={"h4"}>
                                             <span>Email: </span>
-                                            {student.email}
+                                            {lecturer.email}
                                         </Typography>
                                         <Typography component={"h4"}> <span>Phone: </span>
                                             {
-                                                !_.isEmpty(student)?
-                                                student.phone.map((v)=>{
+                                                !_.isEmpty(lecturer)?
+                                                lecturer.phone.map((v)=>{
                                                     return(
                                                         <>
                                                             {v.phone_no} <span> </span>
@@ -173,7 +169,7 @@ const StdModal = /*forwardRef((props, ref)*/ () => {
                                         </Typography>*/}
                                     </Typography>
                                     <br/>
-                                    {
+                                    {/*{
                                         userType !== "STUDENT"?
                                             <>
                                                 <Button variant="outlined" color="secondary" onClick={()=>{viewProfile?setViewProfile(false):setViewProfile(true)}}>
@@ -181,16 +177,16 @@ const StdModal = /*forwardRef((props, ref)*/ () => {
                                                 </Button>
                                             </>
                                             :<></>
-                                    }
+                                    }*/}
 
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} md={9} style={{paddingRight:"30px"}}>
                                 <Typography  className={classes.courses}>
                                     {
-                                        userType !== "STUDENT" ?
-                                            viewProfile ? <StdProfile/> : <TransferList/>
-                                            : <StdProfile/>
+                                        userType === "ADMIN" ?
+                                           <LecCourseTransferList/>
+                                            : <></>
                                     }
                                 </Typography>
 
@@ -204,4 +200,4 @@ const StdModal = /*forwardRef((props, ref)*/ () => {
     );
 };
 
-export default StdModal;
+export default LecModal;

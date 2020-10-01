@@ -99,6 +99,37 @@ export const dropLecturer = (id,username,password)=>{
 
 }
 
+export const addLecturer_Course = (data,username,password)=>{
+
+    return axios.post(`${base_url}/lecturer_courses/add`,data,
+        {
+            auth: {
+                username: username,
+                password: password
+            }
+        },
+    ).then(r => {
+        return r.status
+    }).catch(reason => {return reason.message})
+
+}
+
+
+export const dropLecturer_Course = (ssn,username,password)=>{
+
+    return axios.delete(`${base_url}/lecturer_courses/delete/${ssn}`,
+        {
+            auth: {
+                username: username,
+                password: password
+            }
+        }
+    ).then(r => {
+        return r.status
+    }).catch(reason => {return reason.message})
+
+}
+
 
 
 export const updateLecturer = (data,username,password)=>{

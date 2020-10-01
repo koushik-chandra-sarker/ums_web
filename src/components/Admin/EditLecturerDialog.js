@@ -71,8 +71,6 @@ const EditLecturerDialog = () => {
 
     },[lec])
 
-    console.log(lec)
-    console.log(lecturer)
     const dispatch = useDispatch();
     const [selectedBDate, setSelectedBDate] = React.useState(new Date());
     const [selectedJDate, setSelectedJDate] = React.useState(new Date());

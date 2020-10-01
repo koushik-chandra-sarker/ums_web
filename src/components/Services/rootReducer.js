@@ -17,6 +17,8 @@ import SchoolReducer from "./School/SchoolReducer";
 import ProgrammeReducer from "./Programme/ProgrammeReducer";
 import LecturerReducer from "./Lecturer/LecturerReducer";
 import UserReducer from "./User/UserReducer";
+import LecModelControlReducer from "./LecModelControl/LecModelControlReducer";
+import CourseListReducer from "./Courses/CourseListReducer";
 
 
 
@@ -28,11 +30,13 @@ const rootReducer = combineReducers ({
     user: LoginReducer,
     auth: AuthApiReducer,
     stdModalControl: StdModelControlReducer,
+    LecModalControl: LecModelControlReducer,
     lecturer_courseList: LecturerCoursesReducer,
     studentCourseListByCSsn:StudentCourseBYCourseSsnReducer,
     LoginAsOpen:LoginAsReducer,
     CampusList:CampusListReducer,
     Campus:CampusReducer,
+    courseList:CourseListReducer,
     SchoolList:SchoolListReducer,
     School:SchoolReducer,
     ProgrammeList:ProgrammeListReducer,

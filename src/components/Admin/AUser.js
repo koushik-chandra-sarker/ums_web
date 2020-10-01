@@ -27,6 +27,7 @@ import {Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Card from "@material-ui/core/Card";
+import EditUserDialog from "./EditUserDialog";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -121,7 +122,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-// export const EditStudentContext = React.createContext();
 const AUser = () => {
 
     const classes = useStyles();
@@ -129,7 +129,7 @@ const AUser = () => {
     const credential = JSON.parse(localStorage.getItem("credential"))
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = useState(null);
-    console.log(userList)
+
     useEffect(() => {
         dispatch(getSchoolList(credential.username, credential.password))
     }, [])
@@ -208,6 +208,7 @@ const AUser = () => {
     return (
         <div className={classes.root}>
             <StdModal/>
+
 
             <Grid container spacing={3}>
                 <Grid item xs={12} spacing={3} container justify={"space-between"} alignItems={"center"}>

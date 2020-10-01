@@ -21,6 +21,7 @@ import {getProgrammeList} from "../Services/Programme/ProgrammeAction";
 import {getLecturerList} from "../Services/Lecturer/LecturerAction";
 import {fetchALLStudent} from "../Services/Student/StudentAction";
 import {getUserList} from "../Services/User/UserAction";
+import {getCourseList} from "../Services/Courses/CourseAction";
 
 const AMenu = [
     {
@@ -90,6 +91,7 @@ const AdminMain = () => {
         dispatch(getLecturerList(credential.username,credential.password))
         dispatch(fetchALLStudent(credential.username,credential.password))
         dispatch(getUserList(credential.username,credential.password))
+        dispatch(getCourseList(credential.username,credential.password))
     },[])
     const [openProfileDialog, setOpenProfileDialog] = useState(false)
     return (

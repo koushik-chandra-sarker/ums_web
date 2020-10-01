@@ -13,8 +13,9 @@ import credential from "../Common/Credential";
 import {toast} from "react-toastify";
 import Button from "@material-ui/core/Button";
 import _ from 'lodash'
-import {dropUser, getUserList} from "../Services/User/UserAction";
+import {dropUser, fetchUser, getUser, getUserList} from "../Services/User/UserAction";
 import swal from "sweetalert";
+import EditUserDialog from "./EditUserDialog";
 
 const useStyles = makeStyles((theme) => ({
     popover: {
@@ -50,18 +51,19 @@ const tableColumn = [
     "Action"
 ]
 
+export const EditUserContext = React.createContext();
+
 
 const UserTable = (props) => {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const classes = useStyles();
     const dispatch = useDispatch();
-    // const [editDialog, setEditDialog] = useState({
-    //     open: false,
-    //     programmeCode:props.programmeCode
-    //
-    // })
 
+    const [editDialog, setEditDialog] = useState({
+        open: false,
+        defaultRole:[]
+    })
 
     const handlePopoverOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -107,7 +109,7 @@ const UserTable = (props) => {
 
 
 
-    function handleDeleteStdUser(id) {
+    function handleDeleteUser(id) {
         dropUser(id, credential.username, credential.password)
             .then(r  =>{
                 if (r===200){
@@ -119,8 +121,9 @@ const UserTable = (props) => {
 
     return (
         <div className="table_main">
-            {/*<EditStudentContext.Provider value={{editDialog, setEditDialog}}> <EditStudentDialog/>*/}
-            {/*</EditStudentContext.Provider>*/}
+            <EditUserContext.Provider value={{editDialog,setEditDialog}}>
+                <EditUserDialog/>
+            </EditUserContext.Provider>
             <table className={classes.table}>
                 <thead>
                 <tr>
@@ -168,15 +171,16 @@ const UserTable = (props) => {
                                     <IconButton
                                         size={"small"}
                                         edge="end"
-                                        aria-label="delete"
+                                        aria-label="edit"
                                         style={{margin: "5px", background:"#f5f5f5"}}
 
-                                        // onClick={event => {
-                                        //     setEditDialog({
-                                        //         ...editDialog, open: true
-                                        //     })
-                                        //     dispatch(fetchStudent(value.id, credential.username, credential.password))
-                                        // }}
+                                        onClick={event => {
+                                            setEditDialog({
+                                                ...editDialog, open: true,
+                                                defaultRole: value.roles
+                                            })
+                                            dispatch(fetchUser(value.id, credential.username, credential.password))
+                                        }}
 
                                     >
                                         <EditIcon/>
@@ -188,7 +192,7 @@ const UserTable = (props) => {
                                         color={"secondary"}
                                         style={{ margin: "5px", background:"#f5f5f5"}}
                                         onClick={() => {
-                                            handleDeleteStdUser(value.id)
+                                            handleDeleteUser(value.id)
                                         }}
                                     >
                                         <DeleteIcon/>

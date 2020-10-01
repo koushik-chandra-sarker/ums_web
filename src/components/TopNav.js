@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import {Typography} from "@material-ui/core";
 import notification from "../Images/notification.svg";
 import massage from "../Images/massege.svg";
-import profilePic from "../Images/profile_pic.JPG";
+import defaultProfilePic from "../Images/DefaultprofilePic.png"
 import "../css/TopNav.css"
 import active from "../Images/active.svg"
 import ProfileDialog from "./Common/ProfileDialog";
@@ -51,7 +51,7 @@ const TopNav = (props) => {
                             <Typography component="div" align={"right"} className="profile_pic">
                                 <Typography
                                     component={"img"}
-                                    src={profilePic}
+                                    src={defaultProfilePic}
                                     alt="Profile Picture"
                                     onClick={ProfilePicClickHandler}
 
