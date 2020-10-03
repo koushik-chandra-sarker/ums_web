@@ -70,10 +70,7 @@ const TStudents = (props) => {
                         action={StdDialogControl}
                     />
                 </Grid>
-                <StdModal/>
-              {/* <StdModal ref={childRef}
-                    stdId={stdId}
-               />*/}
+
             </Grid>
         </>
     );

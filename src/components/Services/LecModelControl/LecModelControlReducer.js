@@ -1,4 +1,4 @@
-import {SUCCESS} from "./LecModelControlType";
+import {LEC_MODAL_SUCCESS} from "./LecModelControlType";
 
 
 const initialState ={
@@ -11,7 +11,7 @@ const initialState ={
 const LecModelControlReducer = (state = initialState, action) => {
     switch (action.type) {
 
-        case SUCCESS:
+        case LEC_MODAL_SUCCESS:
             return {
                 ...state,
                 data: action.payload,

@@ -60,7 +60,6 @@ const Classes = (props) => {
             return (
                 <>
                 <Table1 person={studentCourse.data}/>
-                <StdModal/>
                 </>
             )
         }

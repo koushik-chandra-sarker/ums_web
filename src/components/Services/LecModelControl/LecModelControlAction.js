@@ -7,7 +7,7 @@ export const setLecModalControl = (action, id)=> dispatch =>{
     }
 
         dispatch({
-            type:"SUCCESS",
+            type:"LEC_MODAL_SUCCESS",
             payload:data
         })
 

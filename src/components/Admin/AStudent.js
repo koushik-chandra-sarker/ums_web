@@ -112,7 +112,6 @@ const AStudent = () => {
 
     return (
         <div className={classes.root}>
-            <StdModal/>
 
             <Grid container spacing={3}>
                 <Grid item xs={12} spacing={3} container justify={"space-between"} alignItems={"center"}>

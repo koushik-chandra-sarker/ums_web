@@ -1,4 +1,4 @@
-import {SUCCESS} from "./StdModelControlType";
+import {STD_MODAL_SUCCESS} from "./StdModelControlType";
 
 
 const initialState ={
@@ -11,7 +11,7 @@ const initialState ={
 const StdModelControlReducer = (state = initialState, action) => {
     switch (action.type) {
 
-        case SUCCESS:
+        case STD_MODAL_SUCCESS:
             return {
                 ...state,
                 data: action.payload,

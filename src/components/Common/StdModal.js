@@ -124,7 +124,9 @@ const StdModal = /*forwardRef((props, ref)*/ () => {
                                 Student Details
                             </Typography>
                             <IconButton className={classes.closeIcon} edge="start" color="inherit"
-                                        onClick={handleClose}
+                                        onClick={()=> {
+                                            handleClose()
+                                        }}
                                         aria-label="close">
                                 <CloseIcon/>
                             </IconButton>

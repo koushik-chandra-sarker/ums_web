@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -86,27 +86,33 @@ export default function ProfileDialog(props) {
     const user = useSelector(store => store.user.data)
     const classes = useStyles();
     const dispatch = useDispatch();
+    // const userT = userType;
+
 
     const handleClose = () => {
         open.setOpenProfileDialog(false);
 
     };
     const rowEvent = (id) => {
-        if (userType==="STUDENT"){
+        const ut= localStorage.getItem("user_type")
+        if (ut === "STUDENT"){
+            console.log("STUDENT OK")
             dispatch(setModalControl(true,id))
             dispatch(fetchStudent(id,credential.username,credential.password))
             open.setOpenProfileDialog(false);
             dispatch(fetchUserBySId(props.person.id,credential.username,credential.password))
         }
-        else if (userType === "LECTURER"){
+        else if (ut === "LECTURER"){
+            console.log("LECTURER OK")
             dispatch(setLecModalControl(true,id))
-            dispatch(getLecturer(id,credential.username,credential.password))
+            // dispatch(getLecturer(id,credential.username,credential.password))
             open.setOpenProfileDialog(false);
-            dispatch(fetchUserByLId(props.person.id,credential.username,credential.password))
+            // dispatch(fetchUserByLId(props.person.id,credential.username,credential.password))
         }
-
-
-
+       /* else {
+            dispatch(setModalControl(false,null))
+            dispatch(setLecModalControl(false,null))
+        }*/
 
     }
 

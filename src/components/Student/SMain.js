@@ -9,6 +9,8 @@ import ProfileDialogOpen from "../Context/ProfileDialogOpen"
 import {useSelector} from "react-redux"
 import Pre_reg1 from "../../Images/Pre_reg1.svg"
 import grade from "../../Images/grade.svg"
+import StdModal from "../Common/StdModal";
+import {Grid} from "@material-ui/core";
 
 const SMenu = [
     {
@@ -46,6 +48,7 @@ const SMain = () => {
     const [openProfileDialog, setOpenProfileDialog] = useState(false)
     return (
         <>
+            <StdModal/>
             <ProfileDialogOpen.Provider value={{openProfileDialog, setOpenProfileDialog}}>
                 <TopNav
                     name={"Koushik Sarker"}

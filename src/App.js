@@ -12,6 +12,7 @@ import SMain from "./components/Student/SMain";
 import AdminMain from "./components/Admin/AdminMain";
 import {ToastContainer} from "react-toastify";
 import LecModal from "./components/Common/LecModal";
+import StdModal from "./components/Common/StdModal";
 
 
 function App() {
@@ -32,7 +33,6 @@ function App() {
     return (
         <>
             <ToastContainer/>
-            <LecModal/>
             <Routes/>
             <Switch>
                 {/*<Route exact path={"/"} component={WelcomePage}/>*/}

@@ -1,2 +1,2 @@
 
- export  const SUCCESS= 'SUCCESS';
+ export  const STD_MODAL_SUCCESS= 'STD_MODAL_SUCCESS';

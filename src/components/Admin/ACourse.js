@@ -169,7 +169,7 @@ const ACourse = () => {
                         <Typography component={"div"} className={classes.card}
                                     style={{paddingRight: "40px"}}>
                             <FormControl fullWidth variant="outlined" className={classes.formControl}>
-                                <InputLabel htmlFor="outlined-age-native-simple">Select Campus</InputLabel>
+                                <InputLabel htmlFor="outlined-age-native-simple">Select School</InputLabel>
                                 <Select
                                     native
                                     value={SelectedSchool.id}
@@ -177,7 +177,7 @@ const ACourse = () => {
                                         setSelectedSchool({...SelectedSchool, id: e.target.value});
                                         getData(e.target.value)
                                     }}
-                                    label="Select Campus"
+                                    label="Select School"
                                     // inputProps={{
                                     //     name: 'id',
                                     //     id: 'outlined-age-native-simple',

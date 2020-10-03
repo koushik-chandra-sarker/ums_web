@@ -1,2 +1,2 @@
 
- export  const SUCCESS= 'SUCCESS';
+ export  const LEC_MODAL_SUCCESS= 'LEC_MODAL_SUCCESS';

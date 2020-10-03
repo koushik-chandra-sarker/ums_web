@@ -22,6 +22,8 @@ import {getLecturerList} from "../Services/Lecturer/LecturerAction";
 import {fetchALLStudent} from "../Services/Student/StudentAction";
 import {getUserList} from "../Services/User/UserAction";
 import {getCourseList} from "../Services/Courses/CourseAction";
+import LecModal from "../Common/LecModal";
+import StdModal from "../Common/StdModal";
 
 const AMenu = [
     {
@@ -96,6 +98,8 @@ const AdminMain = () => {
     const [openProfileDialog, setOpenProfileDialog] = useState(false)
     return (
         <>
+            <LecModal/>
+            <StdModal/>
             <ProfileDialogOpen.Provider value={{openProfileDialog, setOpenProfileDialog}}>
                 <TopNav
                     person={user.lecturer!==null?user.lecturer:user.superuser!==null? user.superuser:user.student}

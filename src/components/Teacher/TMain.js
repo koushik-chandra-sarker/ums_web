@@ -12,6 +12,8 @@ import attendance from "../../Images/attendance.svg"
 import ProfileDialogOpen from "../Context/ProfileDialogOpen";
 import {useSelector} from "react-redux";
 import store from "../Services/Store";
+import LecModal from "../Common/LecModal";
+import StdModal from "../Common/StdModal";
 
 
 const TMenu = [
@@ -55,6 +57,8 @@ const TMain = () => {
     const [openProfileDialog, setOpenProfileDialog] = useState(false)
     return (
         <>
+            <LecModal/>
+            <StdModal/>
             <ProfileDialogOpen.Provider value={{openProfileDialog, setOpenProfileDialog}}>
                 <TopNav
                     person={user.lecturer}

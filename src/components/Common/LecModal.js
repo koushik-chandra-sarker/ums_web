@@ -117,7 +117,7 @@ const LecModal = () => {
 
                         <Grid item xs={12} justify={"center"}>
                             <Typography className={classes.title} component={"h4"} variant={"h4"} align={"center"}>
-                                Details
+                                Lecturer Details
                             </Typography>
                             <IconButton className={classes.closeIcon} edge="start" color="inherit"
                                         onClick={handleClose}

@@ -7,7 +7,7 @@ export const setModalControl = (action, id)=> dispatch =>{
     }
 
         dispatch({
-            type:"SUCCESS",
+            type:"STD_MODAL_SUCCESS",
             payload:data
         })
 
