@@ -10,11 +10,14 @@ import _ from "lodash"
 import {setAuth} from "../Services/AuthApi/AuthApiAction";
 import LoginAs from "./LoginAs";
 import {setLoginAsOpen} from "../Services/LoginAs/LoginAsAction";
+import {toast} from "react-toastify";
 
 const Login = () => {
 
     const user = useSelector(state => state.user.data)
+    const user1 = useSelector(state => state.user)
     const dispatch = useDispatch()
+    const [u,setU] = useState(false)
 
     const [userInfo, setUserInfo] = useState({
         username: "",
@@ -22,21 +25,14 @@ const Login = () => {
     })
 
 
-    const FetchData = () => {
-        dispatch(GetUser(userInfo.username, userInfo.password))
-    }
 
 
-    const [loginAsDialogOpen,setOpenLoginAsDialogOpen] = useState({
-        open:false,
-        activeUser:false
-    })
+
     if (!_.isEmpty(user)) {
-
         // Cookies.set('user_type', `${user.roles[0].role}`)
         if (user.roles.length > 1) {
             dispatch(setLoginAsOpen(true))
-        }else {
+        } else {
             dispatch(setAuth(user.active, user.roles[0].role))
             localStorage.setItem('user_type', user.roles[0].role);
         }
@@ -44,9 +40,14 @@ const Login = () => {
         localStorage.setItem('credential', JSON.stringify({username: userInfo.username, password: userInfo.password}));
 
     }
+    const FetchData = () => {
+        dispatch(GetUser(userInfo.username, userInfo.password))
+
+    }
 
     const formHandler = () => {
         FetchData()
+
     }
 
 
@@ -95,21 +96,19 @@ const Login = () => {
                                 <Typography component="div" align="center" className="input">
                                     <LockOpenIcon className="form-icon"/>
                                     <input
-                                        type="text"
+                                        type="password"
                                         placeholder="Password"
                                         name="password"
                                         id="password"
                                         required
                                         onChange={(e) => {
                                             setUserInfo({...userInfo, password: e.target.value});
+
                                         }}
 
                                     />
                                 </Typography>
                                 <Typography component="div" align="center">
-                                    {/* <NavLink to={"/"}>
-                                    <button type="submit">Login</button>
-                                </NavLink>*/}
                                     <button
                                         type="button"
                                         onClick={() => {
@@ -118,6 +117,7 @@ const Login = () => {
                                         }
                                     >Login
                                     </button>
+
                                     <div id="userD"></div>
                                 </Typography>
                                 <Typography component="div" align="center" className="forgot-pass">
